@@ -2,12 +2,35 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>vite-project</title>
+    <link rel="stylesheet" href="src/style.css">
+    <title>Cubic Calculator</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div class="header">
+      <h1>Cubic Calculator</h1>
+    </div>
+    <div class="content">
+      <form id="cubic-form">
+        <div class="input-group">
+          <label for="a">a-value:</label>
+          <input type="number" id="a" name="a" required />
+        </div>
+        <div class="input-group">
+          <label for="b">b-value:</label>
+          <input type="number" id="b" name="b" required />
+        </div>
+        <div class="input-group">
+          <label for="c">c-value:</label>
+          <input type="number" id="c" name="c" required />
+        </div>
+        <div class="input-group">
+          <label for="d">d-value:</label>
+          <input type="number" id="d" name="d" required />
+        </div>
+        <button type="submit">Solve Cubic</button>
+      </form>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
