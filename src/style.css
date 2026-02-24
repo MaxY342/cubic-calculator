@@ -21,13 +21,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 0.5rem;
 }
 
 input {
   width: 100px;
   padding: 0.5rem;
   font-size: 1rem;
-  border-radius: 10px;
+  border-radius: 5px;
   border: 1px solid #000;
 }
 
@@ -39,4 +40,12 @@ button {
   background-color: orange;
   color: white;
   cursor: pointer;
+}
+
+table {
+  border-spacing: 0rem 0rem;
+}
+
+table th {
+  padding: 0.5rem;
 }
