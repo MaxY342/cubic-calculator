@@ -44,8 +44,20 @@ button {
 
 table {
   border-spacing: 0rem 0rem;
+  box-shadow: 5px 5px 10px #cecece;
+  border-radius: 10px;
 }
 
-table th {
-  padding: 0.5rem;
+th {
+  padding: 0.7rem 2rem;
+}
+
+h2 {
+  display: flex;
+justify-content: center;
+}
+
+#value-row {
+  background-color: orange;
+  color: white;
 }
