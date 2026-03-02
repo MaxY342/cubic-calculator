@@ -10,6 +10,8 @@ let pValue = document.getElementById("p-value") as HTMLDivElement;
 let qValue = document.getElementById("q-value") as HTMLDivElement;
 let discriminantValue = document.getElementById("discriminant-value") as HTMLDivElement;
 let equation = document.getElementById("equation") as HTMLHeadingElement;
+const canvas = document.getElementById("graph") as HTMLCanvasElement;
+const ctx = canvas.getContext("2d");
 
 form.addEventListener("submit", (event) => {
     event.preventDefault();
