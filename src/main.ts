@@ -11,7 +11,7 @@ let qValue = document.getElementById("q-value") as HTMLDivElement;
 let discriminantValue = document.getElementById("discriminant-value") as HTMLDivElement;
 let equation = document.getElementById("equation") as HTMLHeadingElement;
 const canvas = document.getElementById("graph") as HTMLCanvasElement;
-const ctx = canvas.getContext("2d");
+const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
 
 form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -57,3 +57,12 @@ form.addEventListener("submit", (event) => {
         }
     }
 });
+
+ctx.strokeStyle = 'rgba(0, 0, 0, 0.2)';
+for (let i = 0; i <= 25; i++) {
+    ctx.moveTo(i * 20, 0);
+    ctx.lineTo(i * 20, 500);
+    ctx.moveTo(0, i * 20);
+    ctx.lineTo(500, i * 20);
+}
+ctx.stroke();

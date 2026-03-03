@@ -46,6 +46,7 @@ table {
   border-spacing: 0rem 0rem;
   box-shadow: 5px 5px 10px #cecece;
   border-radius: 10px;
+  display: inline-table;
 }
 
 th {
@@ -54,10 +55,20 @@ th {
 
 h2 {
   display: flex;
-justify-content: center;
+  justify-content: center;
+}
+.graph-container {
+  display: flex;
+  gap: 4rem;
+  justify-content: center;
+  margin-top: 2rem;
 }
 
 #value-row {
   background-color: orange;
   color: white;
+}
+
+canvas {
+  display: inline;
 }
