@@ -56,13 +56,31 @@ form.addEventListener("submit", (event) => {
             thirdRoot.textContent = "No real root";
         }
     }
+    drawGraph(a, b, c, d);
 });
 
-ctx.strokeStyle = 'rgba(0, 0, 0, 0.2)';
-for (let i = 0; i <= 25; i++) {
+for (let i = 0; i <= 26; i++) {
+    ctx.beginPath();
+    if (i === 13) {
+        ctx.strokeStyle = 'rgba(0, 0, 0, 1)';
+    } else {
+        ctx.strokeStyle = 'rgba(0, 0, 0, 0.2)';
+    }
     ctx.moveTo(i * 20, 0);
-    ctx.lineTo(i * 20, 500);
+    ctx.lineTo(i * 20, 520);
     ctx.moveTo(0, i * 20);
-    ctx.lineTo(500, i * 20);
+    ctx.lineTo(520, i * 20);
+    ctx.stroke();
 }
-ctx.stroke();
+
+function drawGraph(a: number, b: number, c: number, d: number) {
+    ctx.strokeStyle = 'rgba(255, 0, 0, 1)';
+    ctx.beginPath();
+    for (let x = -13; x <= 13; x+=0.1) {
+        const y = a * x * x * x + b * x * x + c * x + d;
+        console.log(x, y);
+        ctx.lineTo(x*20 + 260, 260 + y);
+        ctx.moveTo(x*20 + 260, 260 + y);
+    }
+    ctx.stroke();
+}

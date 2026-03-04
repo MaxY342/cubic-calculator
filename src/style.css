@@ -46,7 +46,6 @@ table {
   border-spacing: 0rem 0rem;
   box-shadow: 5px 5px 10px #cecece;
   border-radius: 10px;
-  display: inline-table;
 }
 
 th {
@@ -67,8 +66,4 @@ h2 {
 #value-row {
   background-color: orange;
   color: white;
-}
-
-canvas {
-  display: inline;
 }
