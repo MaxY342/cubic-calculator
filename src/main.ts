@@ -28,7 +28,7 @@ form.addEventListener("submit", (event) => {
     pValue.textContent = String(p.toFixed(5));
     qValue.textContent = String(q.toFixed(5));
     discriminantValue.textContent = String(discriminant.toFixed(5));
-    equation.textContent = `${String(a)}x\u00b3 + ${String(b)}x\u00b2 + ${String(c)}x + ${String(d)}`
+    equation.textContent = `${a==0 ? '' : String(a) + 'x\u00b3'} ${b==0 ? '' : b < 0 ? '- ' + String(Math.abs(b)) + 'x\u00b2' : '+ ' + String(Math.abs(b)) + 'x\u00b2'} ${c < 0 ? '-' : '+'} ${String(Math.abs(c))}x ${d < 0 ? '-' : '+'} ${String(Math.abs(d))}`
     if (discriminant < 0) {
         const theta = (1 / 3) * Math.acos(-q / (2 * Math.sqrt(-(p * p * p / 27))));
         root1 = 2 * Math.sqrt(-p / 3) * Math.cos(theta) - b / (3 * a);
