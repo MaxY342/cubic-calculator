@@ -76,11 +76,10 @@ for (let i = 0; i <= 26; i++) {
 function drawGraph(a: number, b: number, c: number, d: number) {
     ctx.strokeStyle = 'rgba(255, 0, 0, 1)';
     ctx.beginPath();
-    for (let x = -13; x <= 13; x+=0.1) {
-        const y = a * x * x * x + b * x * x + c * x + d;
+    for (let x = -13; x <= 13; x += 0.1) {
+        const y = a * (x * x * x) + b * (x * x) + c * x + d;
         console.log(x, y);
-        ctx.lineTo(x*20 + 260, 260 + y);
-        ctx.moveTo(x*20 + 260, 260 + y);
+        ctx.lineTo(x*20 + 260, 260 - y);
     }
     ctx.stroke();
 }
