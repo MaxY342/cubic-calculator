@@ -15,6 +15,7 @@ const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
 
 form.addEventListener("submit", (event) => {
     event.preventDefault();
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     const a:number = Number(aInput.value);
     const b:number = Number(bInput.value);
     const c:number = Number(cInput.value);
@@ -28,7 +29,11 @@ form.addEventListener("submit", (event) => {
     pValue.textContent = String(p.toFixed(5));
     qValue.textContent = String(q.toFixed(5));
     discriminantValue.textContent = String(discriminant.toFixed(5));
-    equation.textContent = `${a==0 ? '' : String(a) + 'x\u00b3'} ${b==0 ? '' : b < 0 ? '- ' + String(Math.abs(b)) + 'x\u00b2' : '+ ' + String(Math.abs(b)) + 'x\u00b2'} ${c < 0 ? '-' : '+'} ${String(Math.abs(c))}x ${d < 0 ? '-' : '+'} ${String(Math.abs(d))}`
+    equation.textContent = `
+    ${a==0 ? '' : String(a) + 'x\u00b3'} 
+    ${b==0 ? '' : b < 0 ? '- ' + String(Math.abs(b)) + 'x\u00b2' : '+ ' + String(Math.abs(b)) + 'x\u00b2'} 
+    ${c==0 ? '' : c < 0 ? '- ' + String(Math.abs(c)) + 'x' : '+ ' + String(Math.abs(c)) + 'x'} 
+    ${d==0 ? '' : d < 0 ? '- ' + String(Math.abs(d)) : '+ ' + String(Math.abs(d))}`
     if (discriminant < 0) {
         const theta = (1 / 3) * Math.acos(-q / (2 * Math.sqrt(-(p * p * p / 27))));
         root1 = 2 * Math.sqrt(-p / 3) * Math.cos(theta) - b / (3 * a);
@@ -59,6 +64,7 @@ form.addEventListener("submit", (event) => {
             thirdRoot.textContent = "No real root";
         }
     }
+    drawGrid();
     drawGraph(a, b, c, d);
     if (root1 !== undefined) {
         drawPoint(root1, 0);
@@ -71,18 +77,20 @@ form.addEventListener("submit", (event) => {
     }
 });
 
-for (let i = 0; i <= 26; i++) {
-    ctx.beginPath();
-    if (i === 13) {
-        ctx.strokeStyle = 'rgba(0, 0, 0, 1)';
-    } else {
-        ctx.strokeStyle = 'rgba(0, 0, 0, 0.2)';
+function drawGrid() {
+    for (let i = 0; i <= 26; i++) {
+        ctx.beginPath();
+        if (i === 13) {
+            ctx.strokeStyle = 'rgba(0, 0, 0, 1)';
+        } else {
+            ctx.strokeStyle = 'rgba(0, 0, 0, 0.2)';
+        }
+        ctx.moveTo(i * 20, 0);
+        ctx.lineTo(i * 20, 520);
+        ctx.moveTo(0, i * 20);
+        ctx.lineTo(520, i * 20);
+        ctx.stroke();
     }
-    ctx.moveTo(i * 20, 0);
-    ctx.lineTo(i * 20, 520);
-    ctx.moveTo(0, i * 20);
-    ctx.lineTo(520, i * 20);
-    ctx.stroke();
 }
 
 function drawGraph(a: number, b: number, c: number, d: number) {
@@ -93,7 +101,6 @@ function drawGraph(a: number, b: number, c: number, d: number) {
     ctx.beginPath();
     for (let x = -13; x <= 13; x += 0.1) {
         const y = a * (x * x * x) + b * (x * x) + c * x + d;
-        console.log(x, y);
         ctx.lineTo(x*unitGap + halfWidth, halfHeight - y*unitGap);
     }
     ctx.stroke();
