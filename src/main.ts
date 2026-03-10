@@ -61,7 +61,7 @@ form.addEventListener("submit", (event) => {
             root2 = -u - b / (3 * a);
             firstRoot.textContent = String(root1.toFixed(2));
             secondRoot.textContent = String(root2.toFixed(2));
-            thirdRoot.textContent = "No real root";
+            thirdRoot.textContent = String(root2.toFixed(2));
         }
     }
     drawGrid();
@@ -100,7 +100,7 @@ function drawGraph(a: number, b: number, c: number, d: number) {
     const halfHeight: number = canvas.height / 2;
     ctx.beginPath();
     for (let x = -13; x <= 13; x += 0.1) {
-        const y = a * (x * x * x) + b * (x * x) + c * x + d;
+        const y: number = a * (x * x * x) + b * (x * x) + c * x + d;
         ctx.lineTo(x*unitGap + halfWidth, halfHeight - y*unitGap);
     }
     ctx.stroke();
