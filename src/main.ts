@@ -3,12 +3,15 @@ let aInput = document.getElementById("a") as HTMLInputElement;
 let bInput = document.getElementById("b") as HTMLInputElement;
 let cInput = document.getElementById("c") as HTMLInputElement;
 let dInput = document.getElementById("d") as HTMLInputElement;
-let firstRoot = document.getElementById("root1-x") as HTMLDivElement;
-let secondRoot = document.getElementById("root2-x") as HTMLDivElement;
-let thirdRoot = document.getElementById("root3-x") as HTMLDivElement;
-let pValue = document.getElementById("p-value") as HTMLDivElement;
-let qValue = document.getElementById("q-value") as HTMLDivElement;
-let discriminantValue = document.getElementById("discriminant-value") as HTMLDivElement;
+let firstRoot = document.getElementById("root1-x") as HTMLTableCellElement;
+let secondRoot = document.getElementById("root2-x") as HTMLTableCellElement;
+let thirdRoot = document.getElementById("root3-x") as HTMLTableCellElement;
+let firstRootY = document.getElementById("root1-y") as HTMLTableCellElement;
+let secondRootY = document.getElementById("root2-y") as HTMLTableCellElement;
+let thirdRootY = document.getElementById("root3-y") as HTMLTableCellElement;
+let pValue = document.getElementById("p-value") as HTMLTableCellElement;
+let qValue = document.getElementById("q-value") as HTMLTableCellElement;
+let discriminantValue = document.getElementById("discriminant-value") as HTMLTableCellElement;
 let equation = document.getElementById("equation") as HTMLHeadingElement;
 const canvas = document.getElementById("graph") as HTMLCanvasElement;
 const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
@@ -17,6 +20,10 @@ form.addEventListener("submit", (event) => {
     event.preventDefault();
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     const a:number = Number(aInput.value);
+    if (a === 0) {
+        alert("Coefficient a must be non-zero for a cubic equation.");
+        return;
+    }
     const b:number = Number(bInput.value);
     const c:number = Number(cInput.value);
     const d:number = Number(dInput.value);
@@ -40,28 +47,40 @@ form.addEventListener("submit", (event) => {
         root2 = 2 * Math.sqrt(-p / 3) * Math.cos(theta + (2 * Math.PI / 3)) - b / (3 * a);
         root3 = 2 * Math.sqrt(-p / 3) * Math.cos(theta + (4 * Math.PI / 3)) - b / (3 * a);
         firstRoot.textContent = String(root1.toFixed(2));
+        firstRootY.textContent = "0";
         secondRoot.textContent = String(root2.toFixed(2));
+        secondRootY.textContent = "0";
         thirdRoot.textContent = String(root3.toFixed(2));
+        thirdRootY.textContent = "0";
     } else if (discriminant > 0) {
         const u = Math.cbrt(-q / 2 + Math.sqrt(discriminant));
         const v = Math.cbrt(-q / 2 - Math.sqrt(discriminant));
         root1 = u + v - b / (3 * a);
         firstRoot.textContent = String(root1.toFixed(2));
+        firstRootY.textContent = "0";
         secondRoot.textContent = "No real root";
+        secondRootY.textContent = "Imaginary";
         thirdRoot.textContent = "No real root";
+        thirdRootY.textContent = "Imaginary";
     } else {
         if (p === 0 && q === 0) {
             root1 = root2 = root3 = -b / (3 * a);
             firstRoot.textContent = String(root1.toFixed(2));
+            firstRootY.textContent = "0";
             secondRoot.textContent = String(root2.toFixed(2));
+            secondRootY.textContent = "0";
             thirdRoot.textContent = String(root3.toFixed(2));
+            thirdRootY.textContent = "0";
         } else {
             const u = Math.cbrt(-q / 2);
             root1 = 2 * u - b / (3 * a);
             root2 = -u - b / (3 * a);
             firstRoot.textContent = String(root1.toFixed(2));
+            firstRootY.textContent = "0";
             secondRoot.textContent = String(root2.toFixed(2));
+            secondRootY.textContent = "0";
             thirdRoot.textContent = String(root2.toFixed(2));
+            thirdRootY.textContent = "0";
         }
     }
     drawGrid();
